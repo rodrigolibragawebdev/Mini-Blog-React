@@ -1,0 +1,12 @@
+.register {
+  text-align: center;
+}
+
+.register p {
+  color: #aaa;
+}
+
+.registerDiv h1,
+p {
+  margin: 15px 0;
+}
