@@ -38,7 +38,7 @@ const Home = () => {
         {loading && <p> Carregando...</p>}
         {/*  o erro estava em lançar {h3...} e não sem chaves */}
         {posts && posts.map((post) => <PostDetail key={post.id} post={post} />)}
-        {posts && posts.length === 0 && (
+        {!posts && (
           <div className={styles.noposts}>
             <p>Não foram encontrados posts</p>
             <Link className="btn" to="/posts/create">
