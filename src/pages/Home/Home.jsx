@@ -11,6 +11,7 @@ import PostDetail from "../../components/PostDetail";
 
 const Home = () => {
   const [query, setQuery] = useState("");
+
   const { documents: posts, loading } = useFetchDocuments("posts");
 
   const navigate = useNavigate();
@@ -38,15 +39,30 @@ const Home = () => {
         {loading && <p> Carregando...</p>}
         {/*  o erro estava em lançar {h3...} e não sem chaves */}
         {posts && posts.map((post) => <PostDetail key={post.id} post={post} />)}
-        {!posts ||
-          (posts.length === 0 && (
-            <div className={styles.noposts}>
-              <p>Não foram encontrados posts</p>
-              <Link className="btn" to="/posts/create">
-                Criar primeiro post
-              </Link>
-            </div>
-          ))}
+        {!posts && (
+          <div className={styles.noposts}>
+            <p>Não foram encontrados posts</p>
+            <Link className="btn" to="/posts/create">
+              Criar primeiro post
+            </Link>
+          </div>
+        )}
+        {posts && posts.length === 0 && (
+          <div className={styles.noposts}>
+            <p>Não foram encontrados posts</p>
+            <Link className="btn" to="/posts/create">
+              Criar primeiro post
+            </Link>
+          </div>
+        )}
+        {/* {posts.length === 0 && (
+          <div className={styles.noposts}>
+            <p>Não foram encontrados posts</p>
+            <Link className="btn" to="/posts/create">
+              Criar primeiro post
+            </Link>
+          </div>
+        )} */}
       </div>
     </div>
   );
