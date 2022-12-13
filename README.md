@@ -1,8 +1,8 @@
-##Sobre o projeto:
+## Sobre o projeto:
 
 O projeto é um mini-blog com autenticação de usuários (cadastro/login) e posts dinâmicos.
 
-##Linguagem utilizada:
+## Linguagem utilizada:
 
 - JavaScript
 - REACT
