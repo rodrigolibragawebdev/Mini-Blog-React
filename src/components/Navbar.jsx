@@ -6,9 +6,19 @@ import { useAuthentication } from "../hooks/useAuthentication";
 
 import { useAuthValue } from "../context/AuthContext"; // buscar valor do contexto
 
+import { useNavigate } from "react-router-dom";
+
 const Navbar = () => {
+  const navigate = useNavigate();
   const { user } = useAuthValue();
   const { logout } = useAuthentication();
+
+  const handleLogout = () => {
+    logout();
+    setTimeout(() => {
+      navigate("/Login");
+    }, 1);
+  };
 
   return (
     <nav className={styles.navbar}>
@@ -24,8 +34,6 @@ const Navbar = () => {
             Home
           </NavLink>
         </li>
-
-        {/* separete */}
 
         {!user && (
           <>
@@ -47,7 +55,6 @@ const Navbar = () => {
             </li>
           </>
         )}
-
         {user && (
           <>
             <li>
@@ -68,7 +75,6 @@ const Navbar = () => {
             </li>
           </>
         )}
-
         <li>
           <NavLink
             className={({ isActive }) => (isActive ? styles.active : "")}
@@ -79,7 +85,7 @@ const Navbar = () => {
         </li>
         {user && (
           <li>
-            <button className={styles.btnReset} onClick={logout}>
+            <button className={styles.btnReset} onClick={handleLogout}>
               Sair
             </button>
           </li>
