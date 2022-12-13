@@ -3,6 +3,7 @@ import styles from "./Login.module.css";
 import { useState, useEffect } from "react";
 
 import { useAuthentication } from "../../hooks/useAuthentication";
+import { Link } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -64,6 +65,8 @@ const Login = () => {
         )}
         {error && <p className="error">{error}</p>}
       </form>
+      <p>ou</p>
+      <Link to="/Register">Cadastre-se</Link>
     </div>
   );
 };

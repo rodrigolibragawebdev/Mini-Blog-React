@@ -5,3 +5,7 @@
 .login p {
   color: #aaa;
 }
+
+.login a {
+  color: #333;
+}
