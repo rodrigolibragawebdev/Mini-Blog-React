@@ -1,11 +1,10 @@
 import styles from "./CreatePost.module.css";
 
+import { useInsertDocument } from "../../hooks/useInsertDocument";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthValue } from "../../context/AuthContext";
 // import { useInsertDocument } from "../../hooks/useInsertDocument";
-
-import { useInsertDocument } from "../../hooks/useInsertDocument";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
@@ -16,30 +15,46 @@ const CreatePost = () => {
 
   const { user } = useAuthValue();
 
-  const navigate = useNavigate();
-
   const { insertDocument, response } = useInsertDocument("posts");
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     setFormError("");
 
     // validate image
     try {
       new URL(image);
     } catch (error) {
-      setFormError("A imagem precisa ser uma url");
+      setFormError("A imagem precisa ser uma URL.");
+      return formError;
     }
+
+    console.log(formError);
 
     // create tags array
     const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase());
 
+    console.log(tagsArray);
+
     // check values
     if (!title || !image || !tags || !body) {
-      setFormError("Por favor, preencha todos os campos");
+      setFormError("Por favor, preencha todos os campos!");
+      return formError;
     }
 
-    if (formError) return;
+    console.log(formError);
+
+    console.log({
+      title,
+      image,
+      body,
+      tags: tagsArray,
+      uid: user.uid,
+      createdBy: user.displayName,
+    });
 
     insertDocument({
       title,
@@ -50,7 +65,8 @@ const CreatePost = () => {
       createdBy: user.displayName,
     });
 
-    // redirect to home page
+    console.log(formError);
+
     navigate("/");
   };
 
@@ -64,7 +80,6 @@ const CreatePost = () => {
           <input
             type="text"
             name="text"
-            required
             placeholder="Pense num bom título..."
             onChange={(e) => setTitle(e.target.value)}
             value={title}
@@ -75,7 +90,6 @@ const CreatePost = () => {
           <input
             type="text"
             name="image"
-            required
             placeholder="Insira uma imagem que representa seu post"
             onChange={(e) => setImage(e.target.value)}
             value={image}
@@ -85,7 +99,6 @@ const CreatePost = () => {
           <span>Conteúdo:</span>
           <textarea
             name="body"
-            required
             placeholder="Insira o conteúdo do post"
             onChange={(e) => setBody(e.target.value)}
             value={body}
@@ -96,7 +109,6 @@ const CreatePost = () => {
           <input
             type="text"
             name="tags"
-            required
             placeholder="Insira as tags separadas por vírgula"
             onChange={(e) => setTags(e.target.value)}
             value={tags}
@@ -114,7 +126,6 @@ const CreatePost = () => {
       </form>
     </div>
   );
-  debugger;
 };
 
 export default CreatePost;
