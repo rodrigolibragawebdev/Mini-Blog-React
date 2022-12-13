@@ -12,7 +12,7 @@ export const useAuthentication = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
 
-  // deal with memory leak
+  // DEAL WITH MEMORY LEAK
   const [cancelled, setCancelled] = useState(false);
 
   const auth = getAuth();
@@ -41,9 +41,6 @@ export const useAuthentication = () => {
 
       return user;
     } catch (error) {
-      console.log(error.message);
-      console.log(typeof error.message);
-
       let systemErrorMessage;
 
       if (error.message.includes("Password")) {
@@ -75,10 +72,6 @@ export const useAuthentication = () => {
     try {
       await signInWithEmailAndPassword(auth, data.email, data.password);
     } catch (error) {
-      console.log(error.message);
-      console.log(typeof error.message);
-      console.log(error.message.includes("user-not"));
-
       let systemErrorMessage;
 
       if (error.message.includes("user-not-found")) {
@@ -89,12 +82,8 @@ export const useAuthentication = () => {
         systemErrorMessage = "Ocorreu um erro, por favor tenta mais tarde.";
       }
 
-      console.log(systemErrorMessage);
-
       setError(systemErrorMessage);
     }
-
-    console.log(error);
 
     setLoading(false);
   };

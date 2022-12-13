@@ -1,10 +1,11 @@
 import styles from "./CreatePost.module.css";
 
-import { useInsertDocument } from "../../hooks/useInsertDocument";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { useInsertDocument } from "../../hooks/useInsertDocument";
+
 import { useAuthValue } from "../../context/AuthContext";
-// import { useInsertDocument } from "../../hooks/useInsertDocument";
 
 const CreatePost = () => {
   const [title, setTitle] = useState("");
@@ -32,29 +33,14 @@ const CreatePost = () => {
       return formError;
     }
 
-    console.log(formError);
-
-    // create tags array
+    // CREATE TAGS ARRAY
     const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase());
 
-    console.log(tagsArray);
-
-    // check values
+    // CHECK VALUES
     if (!title || !image || !tags || !body) {
       setFormError("Por favor, preencha todos os campos!");
       return formError;
     }
-
-    console.log(formError);
-
-    console.log({
-      title,
-      image,
-      body,
-      tags: tagsArray,
-      uid: user.uid,
-      createdBy: user.displayName,
-    });
 
     insertDocument({
       title,
@@ -64,8 +50,6 @@ const CreatePost = () => {
       uid: user.uid,
       createdBy: user.displayName,
     });
-
-    console.log(formError);
 
     navigate("/");
   };

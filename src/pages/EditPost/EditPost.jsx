@@ -2,11 +2,11 @@ import styles from "./EditPost.module.css";
 
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+
 import { useAuthValue } from "../../context/AuthContext";
 // import { useInsertDocument } from "../../hooks/useInsertDocument";
 
 import { useUpdateDocument } from "../../hooks/useUpdateDocument";
-
 import { useFetchDocument } from "../../hooks/useFetchDocument";
 
 const EditPost = () => {
@@ -41,7 +41,7 @@ const EditPost = () => {
     e.preventDefault();
     setFormError("");
 
-    // validate image
+    // VALIDATE IMAGE
     try {
       new URL(image);
     } catch (error) {
@@ -49,10 +49,10 @@ const EditPost = () => {
       return formError;
     }
 
-    // create tags array
+    // CREATE TAGS ARRAY
     const tagsArray = tags.split(",").map((tag) => tag.trim().toLowerCase());
 
-    // check values
+    // CHECK VALUES
     if (!title || !image || !tags || !body) {
       setFormError("Por favor, preencha todos os campos");
       return formError;
@@ -69,7 +69,7 @@ const EditPost = () => {
 
     updateDocument(id, data);
 
-    // redirect to dashboard
+    // REDIRECT
     navigate("/dashboard");
   };
 

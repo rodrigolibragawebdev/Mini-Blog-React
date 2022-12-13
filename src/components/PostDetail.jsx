@@ -7,7 +7,7 @@ const PostDetail = ({ post }) => {
     <div className={styles.post_details}>
       <img src={post.image} alt={post.title} />
       <h2>{post.title}</h2>
-      <p className={styles.createdBy}>{post.createdBy}</p>
+      <p className={styles.createdBy}>Autor: {post.createdBy}</p>
       <div className={styles.tags}>
         {post.tags.map((tag) => (
           <p key={tag}>

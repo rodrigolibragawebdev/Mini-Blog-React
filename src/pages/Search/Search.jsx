@@ -1,16 +1,17 @@
+import styles from "./Search.module.css";
+
+import { Link } from "react-router-dom";
+
 import { useFetchDocuments } from "../../hooks/useFetchDocuments";
 
 import { useQuery } from "../../hooks/useQuery";
 
 import PostDetail from "../../components/PostDetail";
 
-import { Link } from "react-router-dom";
-
-import styles from "./Search.module.css";
-
 const Search = () => {
   const query = useQuery();
-  // search/q
+
+  // SEARCH/Q
   const search = query.get("q");
 
   const { documents: posts } = useFetchDocuments("posts", search);

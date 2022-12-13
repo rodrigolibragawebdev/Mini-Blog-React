@@ -29,7 +29,7 @@ const Register = () => {
       return;
     }
 
-    //tem q usar o async la em cima
+    // ASYNC DEPENDENCE
     const res = await createUser(user);
   };
 

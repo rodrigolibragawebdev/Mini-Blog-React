@@ -7,7 +7,7 @@ export const useFetchDocument = (docCollection, id) => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(null);
 
-  // deal with memory leak
+  // DEAL WITH MEMORY LEAK
   const [cancelled, setCancelled] = useState(false);
 
   useEffect(() => {
@@ -26,7 +26,6 @@ export const useFetchDocument = (docCollection, id) => {
 
         setLoading(false);
       } catch (error) {
-        console.log(error.message);
         setError(error.message);
         setLoading(true);
       }
@@ -34,8 +33,6 @@ export const useFetchDocument = (docCollection, id) => {
 
     loadDocument();
   }, [docCollection, id, cancelled]);
-
-  console.log(document);
 
   useEffect(() => {
     return () => setCancelled(true);

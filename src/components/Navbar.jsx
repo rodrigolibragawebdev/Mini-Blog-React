@@ -1,12 +1,10 @@
 import styles from "./Navbar.module.css";
 
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import { useAuthentication } from "../hooks/useAuthentication";
-
 import { useAuthValue } from "../context/AuthContext"; // buscar valor do contexto
-
-import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const navigate = useNavigate();

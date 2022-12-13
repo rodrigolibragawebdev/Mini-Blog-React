@@ -1,17 +1,16 @@
-// Import CSS
+// CSS
 import "./App.css";
 
+//REACT +
+import { useState, useEffect } from "react";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 
-// hooks
-import { useState, useEffect } from "react";
+//HOOKS
 import { useAuthentication } from "./hooks/useAuthentication";
-
-// context
 import { AuthProvider } from "./context/AuthContext";
 
-// Import Pages
+// PAGES
 import About from "./pages/About/About";
 import Home from "./pages/Home/Home";
 import Navbar from "./components/Navbar";
@@ -41,11 +40,11 @@ function App() {
     return <p>Carregando...</p>;
   }
 
-  // a de cima faz uma verificação de chamada
+  // LOADING = CALL VERIFICATION
 
   return (
     <div>
-      {/* passa o user para tdas as paginas da aplicação */}
+      {/* USER TO ALL WITH PROVIDER */}
       <AuthProvider value={{ user }}>
         <BrowserRouter>
           <Navbar />
